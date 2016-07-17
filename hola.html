@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div>
+		<div class="container">
+		    <div class="metaplayer">
+		        <div id='target'></div>
+		    </div>
+		    <div id='searchbar'></div>
+		    <div id='transcript'></div>
+		</div>
+	</div>
+	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script type="application/javascript" src="http://content.jwplatform.com/libraries/gwneMKof.js"></script>
+	<script>jwplayer.key="/* your key goes here */";</script>
+	<script>
+		 $(document).ready(function() {
+		    var jwp, video, player;
+		   $(function () {
+
+		       jwp = jwplayer('target').setup({
+		           controls: false,
+		           controlbar: "none",
+		           width: "600",
+		           height: "300",
+		           autostart: true,
+		           icons: false,
+		           plugins: {
+		               viral: {
+		                   onpause: false,
+		                   oncomplete: false,
+		                   allowmenu: false
+		               }
+		           },
+		           file: "/* your media file url accessible from external IP */"
+		       });
+
+		       jwp.onReady(function () {
+		           video = MetaPlayer.jwplayer(jwp);
+		           video.autoplay = true;
+
+		           player = MetaPlayer(video)
+		               .controlbar({
+		               fullscreen: true
+		           })
+		               .captionconfig()
+		               .transcript("#transcript")
+		               .searchbar("#searchbar")
+		               .mrss("")
+		               .srt()
+		               .load();
+		       });
+
+		   });
+		  });
+	</script>
+</body>
+</html>
